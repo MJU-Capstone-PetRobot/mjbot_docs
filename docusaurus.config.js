@@ -14,7 +14,7 @@ const config = {
   url: 'https://mju-capstone-petrobot.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/mjbot_docs/',
+  baseUrl: '/',
 
 
   // GitHub pages deployment config.

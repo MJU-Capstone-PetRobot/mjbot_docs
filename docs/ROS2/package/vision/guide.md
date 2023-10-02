@@ -1,4 +1,4 @@
-# User's Guide of opi_esp_bridge Package
+# User's Guide of opi_esp_/bridge Package
 
 ## node : vision_process
 
@@ -28,7 +28,7 @@ ros2 run vision vision_process
 | name          | pub/sub | msg type                               | msg structure             | hz | description |
 |---------------|---------|----------------------------------------|---------------------------|----|---|
 | /fps          | pub     | example_interfaces/msg/Int32           | data = fps                | 15 | 실시간 영상 처리 FPS |
-| /owner_exists | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br> 1 : exists <br> 0 : not exists | 15 | 사람 존재 여부 |
-| /owner_size   | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [width, height] <br> width = 0 ~ 640 <br> height = 0 ~ 360 (webcam) <br> height = 0 ~ 480 (depth)| 15 | 사람 크기 |
-| /owner_center | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [x, y] <br> x = 0 ~ 640 <br> y = 0 ~ 360 (webcam) <br> y = 0 ~ 480 (depth)| 15 | 사람 중심 좌표 | 
-| /owner_fall   | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br> 1 : fall <br> 0 : usual| 15 | 낙상 의심 여부 |
+| /owner_exists | pub     | example_interfaces/msg/Bool            | data = 0 or 1 </br> 1 : exists </br> 0 : not exists | 15 | 사람 존재 여부 |
+| /owner_size   | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [width, height] </br> width = 0 ~ 640 </br> height = 0 ~ 360 (webcam) </br> height = 0 ~ 480 (depth)| 15 | 사람 크기 |
+| /owner_center | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [x, y] </br> x = 0 ~ 640 </br> y = 0 ~ 360 (webcam) </br> y = 0 ~ 480 (depth)| 15 | 사람 중심 좌표 | 
+| /owner_fall   | pub     | example_interfaces/msg/Bool            | data = 0 or 1 </br> 1 : fall </br> 0 : usual| 15 | 낙상 의심 여부 |

@@ -27,9 +27,9 @@ ros2 run opi_esp opi_esp_comm
 | name          | pub/sub | msg type                               | msg structure             | hz | description |
 |---------------|---------|----------------------------------------|---------------------------|----|---|
 | /bat          | pub     | example_interfaces/msg/String          | data = "90%, 1h 20m"      | 1 | 배터리 잔량, 남은 시간 |
-| /touch        | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br> 1 : touch <br> 0 : no touch | event | 터치 상태 |
+| /touch        | pub     | example_interfaces/msg/Bool            | data = 0 or 1 </br> 1 : touch </br> 0 : no touch | event | 터치 상태 |
 | /co_ppm       | pub     | example_interfaces/msg/Int32           | data = 20 ~ 2000 | 1 | CO 농도(ppm) |
 | /distance     | pub     | example_interfaces/msg/Int32           | data = 30 ~ 4500 | 10 | 초음파 센서 측정 거리(mm) | 
-| /emo          | sub     | example_interfaces/msg/String          | data = "0" ~ "6" <br> "0" : NULL <br> "1" : close <br> "2" : moving <br> "3" : wink <br> "4" : angry <br> "5" : sad <br> "6" : daily | 15 | 감정 상태 |
-| /neck_rpy     | sub     | geometry_msgs/msg/Vector3              | x = -5 ~ 5 <br> y = -5 ~ 5 <br> z = -5 ~ 5 | 미정 | 목 플랫폼 r,p,y  회전 각도 |
+| /emo          | sub     | example_interfaces/msg/String          | data = "0" ~ "6" </br> "0" : NULL </br> "1" : close </br> "2" : moving </br> "3" : wink </br> "4" : angry </br> "5" : sad </br> "6" : daily | 15 | 감정 상태 |
+| /neck_rpy     | sub     | geometry_msgs/msg/Vector3              | x = -5 ~ 5 </br> y = -5 ~ 5 </br> z = -5 ~ 5 | 미정 | 목 플랫폼 r,p,y  회전 각도 |
 | /neck_z       | sub     | std_msgs/msg/UInt16                    | data = 60 ~ 100 | 미정 | 목 플랫폼 z 위아래(직선) 움직임 |

@@ -22,13 +22,13 @@ ros2 run vision vision_process
 
 ### topic list
 
-- 이미지 1장 영상 처리 완료 시 5개의 토픽을 바로 pub 하고 있음, 평균 15 FPS
 - 사람 크기와 사람 중심 좌표는 이미지 크기(640x360, 640x480)에 제한 됨
 
 | name          | pub/sub | msg type                               | msg structure             | hz | description |
 |---------------|---------|----------------------------------------|---------------------------|----|---|
-| /fps          | pub     | example_interfaces/msg/Int32           | data = fps                | 15 | 실시간 영상 처리 FPS |
-| /owner_exists | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br></br> 1 : exists <br></br> 0 : not exists | 15 | 사람 존재 여부 |
-| /owner_size   | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [width, height] <br></br> width = 0 ~ 640 <br></br> height = 0 ~ 360 (webcam) <br></br> height = 0 ~ 480 (depth)| 15 | 사람 크기 |
-| /owner_center | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [x, y] <br></br> x = 0 ~ 640 <br></br> y = 0 ~ 360 (webcam) <br></br> y = 0 ~ 480 (depth)| 15 | 사람 중심 좌표 | 
-| /owner_fall   | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual| 15 | 낙상 의심 여부 |
+| /fps          | pub     | example_interfaces/msg/Int32           | data = fps                | 약 10~15 | 실시간 영상 처리 FPS |
+| /owner_exists | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br></br> 1 : exists <br></br> 0 : not exists | 약 10~15 | 사람 존재 여부 |
+| /owner_size   | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [width, height] <br></br> width = 0 ~ 640 <br></br> height = 0 ~ 360 (webcam) <br></br> height = 0 ~ 480 (depth)| 사람이 인식될 때 | 사람 크기 |
+| /owner_center | pub     | example_interfaces/msg/Int16MultiArray | data[2] = [x, y] <br></br> x = 0 ~ 640 <br></br> y = 0 ~ 360 (webcam) <br></br> y = 0 ~ 480 (depth)| 사람이 인식될 때 | 사람 중심 좌표 | 
+| /depth_distance   | pub     | example_interfaces/msg/Int16            | data = 300 ~ 3000 (mm) | 사람이 인식될 때 | 사람 중심 좌표의 뎁스 카메라 측정 거리 |
+| /owner_fall   | pub     | example_interfaces/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual| 낙상 의심 발생 시 | 낙상 의심 여부 |

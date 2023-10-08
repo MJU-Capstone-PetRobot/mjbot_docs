@@ -3,7 +3,30 @@
 
 ## RKNN Setup
 
-- 작성 예정
+### Hardware
+- Computer : [Orange Pi 5B](https://github.com/MJU-Capstone-PetRobot/docs/tree/main/Orange_Pi_5B)
+
+### Software
+- Ubuntu 22.04
+- Python 3.10
+- [RKNN-ToolKit-Lite2 (python API)](https://github.com/rockchip-linux/rknn-toolkit2)
+
+### Installaion
+
+1. Install python3 and pip3
+    - `sudo apt-get update`  
+    - `sudo apt-get install -y python3 python3-dev python3-pip gcc`  
+2. Install dependent libraries
+    - `sudo apt-get install -y python3-opencv`
+    - `sudo apt-get install -y python3-numpy`
+3. Install RKNN Toolkit Lite2
+    - `cd ./rknn-toolkit2/rknn_toolkit_lite2/packages`
+    - `pip3 install rknn_toolkit_lite2-1.5.0-cp310-cp310-linux_aarch64.whl`
+
+### Run Demo
+
+- `cd ./rknn-toolkit2/rknn_toolkit_lite2/examples/inference_with_lite`
+- `python3 test.py`
 
 ## Realsense Setup
 
@@ -13,8 +36,9 @@
 - Connection : USB 3.0
 
 ### Software
-- OS : Ubuntu 22.04
-- Depth camera library : [Intel® RealSense™ SDK 2.0](https://github.com/IntelRealSense/librealsense)
+- Ubuntu 22.04
+- Python 3.10
+- [Intel® RealSense™ SDK 2.0](https://github.com/IntelRealSense/librealsense)
 
 ### Prerequisites
 `sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade`  

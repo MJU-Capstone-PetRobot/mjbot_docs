@@ -1,4 +1,4 @@
-# FW Protocol
+# Protocol
 
 `모든 패킷 데이터는 char 타입`
 

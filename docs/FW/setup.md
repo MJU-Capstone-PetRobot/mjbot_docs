@@ -4,7 +4,6 @@
 
 1. [ESP32-S3-WROOM-1 개발보드](https://smartstore.naver.com/bneware/products/6729229592)  
    1. N16R8 : FLASH 16MB, PSRAM 8MB  
-
 2. [MQ-7 일산화탄소 가스 센서 모듈](https://www.devicemart.co.kr/goods/view?no=1327402)  
 
 ## Dev Env
@@ -13,6 +12,20 @@
    1. [AX-12A](https://github.com/likhogub/AX-12A-servo-library/tree/master)
    2. [MQSensorsLib](https://github.com/miguel5612/MQSensorsLib)
    3. [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI.git)
+3. [arduino-esp32 package](https://github.com/espressif/arduino-esp32/releases)
+   1. APP size 변경 (3MB -> 6MB)
+      1. app3M_fat9M_16MB.csv 수정
+         1. 파일 주소 - C:\Users\USER_NAME\AppData\Local\Arduino15\packages\esp32\hardware\esp32\VERSION\tools\partitions
+         2. app1 삭제, app0 size 0x600000 수정
+            1. 변경 전  
+               ![img](./app3M_fat9M_16MB.csv_no_change.png)  
+            2. 변경 후  
+               ![img](./app3M_fat9M_16MB.csv_change.png)  
+      2. boards.txt 수정
+         1. 파일 주소 - C:\Users\USER_NAME\AppData\Local\Arduino15\packages\esp32\hardware\esp32\VERSION\boards.txt
+         2. upload.maximum_size 수정
+            1. 변경 전 : esp32s3.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+            2. 변경 후 : esp32s3.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=6291456
 
 ## ESP32_M Pin Wiring
 

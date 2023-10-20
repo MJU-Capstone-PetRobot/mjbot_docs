@@ -3,10 +3,9 @@
 ## Hardware
 
 1. [ESP32-S3-WROOM-1 개발보드](https://smartstore.naver.com/bneware/products/6729229592)  
-    <img src="./ESP32-S3-WROOM-1%20dev%20board.png" width="30%" height="30%"></img>
+   1. N16R8 : FLASH 16MB, PSRAM 8MB  
 
 2. [MQ-7 일산화탄소 가스 센서 모듈](https://www.devicemart.co.kr/goods/view?no=1327402)  
-     <img src="./mq7-module.png" width="30%" height="30%"></img>
 
 ## Dev Env
 1. Arduino IDE

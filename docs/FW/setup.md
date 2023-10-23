@@ -5,6 +5,7 @@
 1. [ESP32-S3-WROOM-1 개발보드](https://smartstore.naver.com/bneware/products/6729229592)  
    1. N16R8 : FLASH 16MB, PSRAM 8MB  
 2. [MQ-7 일산화탄소 가스 센서 모듈](https://www.devicemart.co.kr/goods/view?no=1327402)  
+3. [A02YYUW 초음파 센서](https://wiki.dfrobot.com/_A02YYUW_Waterproof_Ultrasonic_Sensor_SKU_SEN0311)
 
 ## Dev Env
 1. Arduino IDE

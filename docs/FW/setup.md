@@ -48,12 +48,12 @@
 |           |     | 3.3V      |     |     | GND  |          |                |
 |           |     | 3.3V      |     |     | TXD0 | UART0 TX | Opi TX (USB-C) |
 |           |     | RST(EN)   |     |     | RXD0 | UART0 RX | Opi RX (USB-C) |
-|           |     | IO4       |     |     | IO1  | UART1 TX | Neck TX        |
-|           |     | IO5       |     |     | IO2  | UART1 RX | Neck RX        |
-|           |     | IO6       |     |     | IO42 |          |                |
-|           |     | IO7       |     |     | IO41 |          |                |
-|           |     | IO15      |     |     | IO40 | UART3 TX | ESP_S TX       |
-| 터치 센서 | ADC | IO16      |     |     | IO39 | UART3 RX | ESP_S RX       |
+|           |     | IO4       |     |     | IO1  |UART1 RX/TX| Neck TX / RX   |
+|           |     | IO5       |     |     | IO2  |          |                |
+|  터치 센서  |     | IO6       |     |     | IO42 |          |                |
+|  터치 센서  |     | IO7       |     |     | IO41 |          |                |
+|  터치 센서  |     | IO15      |     |     | IO40 | UART3 TX | ESP_S TX       |
+|           | ADC | IO16      |     |     | IO39 | UART3 RX | ESP_S RX       |
 | 가스 센서 | ADC | IO17      |     |     | IO38 |          |                |
 |           |     | IO18      |     |     | IO37 | PSRAM    |                |
 |           |     | IO8       |     |     | IO36 | PSRAM    |                |
@@ -79,8 +79,8 @@
 |                |       | IO5       |     |     | IO2  | UART1 RX | Ultrasonic 1 RX |
 | ESP32_M        | UART1 | IO6       |     |     | IO42 | UART2 TX | Ultrasonic 2 TX |
 | ESP32_M        | UART1 | IO7       |     |     | IO41 | UART2 RX | Ultrasonic 2 RX |
-|                |       | IO15      |     |     | IO40 |          |                 |
-|                |       | IO16      |     |     | IO39 |          |                 |
+|                |       | IO15      |     |     | IO40 |   I2C    | Current Sensor |
+|                |       | IO16      |     |     | IO39 |   I2C    | Current Sensor  |
 |                |       | IO17      |     |     | IO38 |          |                 |
 |                |       | IO18      |     |     | IO37 | PSRAM    |                 |
 |                |       | IO8       |     |     | IO36 | PSRAM    |                 |
@@ -88,9 +88,9 @@
 |                |       | IO46      |     |     | IO0  |          |                 |
 |                |       | IO9       |     |     | IO45 |          |                 |
 |                |       | IO10      |     |     | IO48 | 컬러LED  |                 |
-| LCD            | I2C1  | IO11      |     |     | IO47 |          |                 |
-| LCD            | I2C1  | IO12      |     |     | IO21 |          |                 |
-| Current Sensor | I2C   | IO13      |     |     | IO20 |          |                 |
-| Current Sensor | I2C   | IO14      |     |     | IO19 |          |                 |
+| GPS TX         | I2C1  | IO11      |     |     | IO47 |          |                 |
+| GPS RX         | I2C1  | IO12      |     |     | IO21 |          |                 |
+|                |       | IO13      |     |     | IO20 |          |                 |
+|                |       | IO14      |     |     | IO19 |          |                 |
 |                |       | VIN(5V)   |     |     | GND  |          |                 |
 |                |       | GND       |     |     | GND  |          |                 |

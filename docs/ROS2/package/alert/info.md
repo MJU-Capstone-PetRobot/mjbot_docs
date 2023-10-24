@@ -20,5 +20,5 @@ ros2 run mjbot_alert mjbot_alert.py
 
 | name          | pub/sub | msg type                               | msg structure             | hz | description |
 |---------------|---------|----------------------------------------|---------------------------|----|---|
-| /co_ppm       | sub     | example_interfaces/msg/Int32           | data = 20 ~ 2000 | 1 | CO 농도(ppm) |
-| /owner_fall   | sub     | example_interfaces/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual| 낙상 의심 발생 시 | 낙상 의심 여부 |
+| /co_ppm       | sub     | std_msgs/msg/Int32           | data = 20 ~ 2000 | 1 | CO 농도(ppm) |
+| /owner_fall   | sub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual| 낙상 의심 발생 시 | 낙상 의심 여부 |

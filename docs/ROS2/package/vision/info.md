@@ -24,11 +24,8 @@ ros2 run vision vision_process
 
 - 사람 크기와 사람 중심 좌표는 이미지 크기(640x360, 640x480)에 제한 됨
 
-| name          | pub/sub | msg type                               | msg structure             | hz | description |
-|---------------|---------|----------------------------------------|---------------------------|----|---|
-| /fps          | pub     | std_msgs/msg/Int32           | data = fps                | 약 10~15 | 실시간 영상 처리 FPS |
-| /owner_exists | pub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : exists <br></br> 0 : not exists | 약 10~15 | 사람 존재 여부 |
-| /owner_size   | pub     | std_msgs/msg/Int16MultiArray | data[2] = [width, height] <br></br> width = 0 ~ 640 <br></br> height = 0 ~ 360 (webcam) <br></br> height = 0 ~ 480 (depth)| 사람이 인식될 때 | 사람 크기 |
-| /owner_center | pub     | std_msgs/msg/Int16MultiArray | data[2] = [x, y] <br></br> x = 0 ~ 640 <br></br> y = 0 ~ 360 (webcam) <br></br> y = 0 ~ 480 (depth)| 사람이 인식될 때 | 사람 중심 좌표 | 
-| /depth_distance   | pub     | std_msgs/msg/Int16            | data = 300 ~ 3000 (mm) | 사람이 인식될 때 | 사람 중심 좌표의 뎁스 카메라 측정 거리 |
-| /owner_fall   | pub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual| 낙상 의심 발생 시 | 낙상 의심 여부 |
+| name        | pub/sub | msg type                     | msg structure                                                                                 | hz    | description    |
+| ----------- | ------- | ---------------------------- | --------------------------------------------------------------------------------------------- | ----- | -------------- |
+| /owner_size | pub     | std_msgs/msg/Int16MultiArray | data[2] = [width, height] <br></br> width = 0 ~ 640 <br></br> height = 0 ~ 480                | 100   | 사람 크기      |
+| /owner_xyz  | pub     | std_msgs/msg/Int16MultiArray | data[3] = [x, y, z] (yes owner) <br></br> x = 0 ~ 640 <br></br> y = 0 ~ 480 <br></br> z = 300 ~ 3000 (mm) <br></br> data[3] = [0, 0, 0] (no owner) | 100   | 사람 중심 좌표 |
+| /owner_fall | pub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual                                          | event | 낙상 판단      |

@@ -1,32 +1,54 @@
 # Protocol
 
-`모든 패킷 데이터는 char 타입`
+## Note
+1. 모든 패킷 데이터는 char 타입
+2. 공백 허용
 
-## Orange Pi -> ESP32_M
+## ESP_M  ← Orange Pi
 
-| SOF | P_ID | DATA      | EOF | 설명      | 정상 데이터 범위                 | 주기  |
+### Packet example
+1. (N^1, 1, 80, 3)
+2. (E^daily)
+
+### Table
+| SOF | P_ID | DATA      | EOF | 설명      | 데이터 범위                | 주기  |
 |-----|------|-----------|-----|-----------|----------------------------------|-------|
-| (   | N    | R,P,Z,Y   | )   | 목 제어   | R = -5.000 ~ 5.000 <br></br> P = -5.000 ~ 5.000 <br></br> Z = 60 ~ 100 <br></br> Y = -5.000 ~ 5.000 | 미정 |
-| (   | E    | 감정 코드 | )   | 감정 상태 | "0" : NULL <br></br> "1" : close <br></br> "2" : moving <br></br> "3" : wink <br></br> "4" : angry <br></br> "5" : sad <br></br> "6" : daily | 미정 |
-/
-## ESP32_M -> Orange Pi
+| (   | N^    | R,P,Z,Y   | )   | 목 제어   | R = -5.000 ~ 5.000 <br></br> P = -5.000 ~ 5.000 <br></br> Z = 60 ~ 100 <br></br> Y = -5.000 ~ 5.000 | Event |
+| (   | E^    | 표정 | )   | 표정  | daily (평범) <br></br> wink (기쁨) <br></br> sad (슬픔) <br></br> angry (분노) <br></br> moving (당황) <br></br> blink (눈 깜빡) <br></br> low_bat (배터리 부족) <br></br> danger (위험) | Event |
 
-| SOF | P_ID | DATA            | EOF | 설명        | 정상 데이터 범위 | 주기  |
+## ES2_M → Orange Pi
+
+### Packet example 
+1. \<T^1\>
+2. \<C^200\>
+3. \<D^650\>
+4. \<B^70%\>
+5. \<BD^1h 20m\>
+
+### Table
+| SOF | P_ID | DATA            | EOF | 설명        | 데이터 범위 | 주기  |
 |-----|------|-----------------|-----|-------------|------------------|-------|
-| <   | T    | 쓰담            | >   | 쓰담 감지   | 1 : touch <br></br> 0 : no touch | Event ?|
-| <   | C    | ppm             | >   | CO농도      | 20~2000          | 1초   |
-| <   | D    | mm              | >   | 측정거리    | 30~4500          | 100ms |
-| <   | B    | 잔량, 남은 시간 | >   | 배터리 상태 | "90%, 1h 20m" | 1초   |
+| <   | T^    | 쓰담            | >   | 쓰담 감지   | 1 : touch <br></br> 0 : no touch | 상태 변경 시 |
+| <   | C^    | ppm             | >   | CO농도      | 0 ~ 10000          | 1초   |
+| <   | D^    | mm              | >   | 측정거리    | 30 ~ 4500          | 100ms |
+| <   | B^    | 퍼센트 | >   | 배터리 잔량 | 0% ~ 100% | 1초   |
+| <   | BD^    | 시간 | >   | 배터리 지속 시간 | 0h 0m ~ 3h 0m (최대치 미정) | 1초   |
 
-## ESP32_S -> ESP32_M
+## ESP_M ← ESP_S
 
+### Packet example 
+1. \*D^650\*
+2. \*G^37.663998, 127.978462\* (데이터 형식 아직 몰라요)
+3. \*B^70%\*
+4. \*BD^1h 20m\*
+
+
+### Table 
 - 배터리 잔량 계산은 ESP_S에서
 
-
-| SOF | P_ID | DATA | EOF | 설명 | 정상 데이터 범위 | 주기 |
+| SOF | P_ID | DATA | EOF | 설명 | 데이터 범위 | 주기 |
 |-----|------|------|-----|------|------------------|------|
-| *   | B    | 잔량   | *   | 배터리 상태 | "90%" | 1초 |
-| *   | BD   | 시간   | *   | 배터리 지속 시간 | "1h 20m" | 1초 |
-| *   | D    | mm   | *   | 측정 거리 | 30~4500 | 100ms |
-| *   | G    | GPS coordinates | * | GPS 위치 | (Latitude, Longitude) | Variable based on GPS fix |
-
+| *   | D^    | mm   | *   | 측정 거리 | 30~4500 | 100ms |
+| *   | G^    | GPS coordinates | * | GPS 위치 | (Latitude, Longitude) | Variable based on GPS fix |
+| *   | B^    | 퍼센트   | *   | 배터리 잔량 | "90%" | 1초 |
+| *   | BD^   | 시간   | *   | 배터리 지속 시간 | "1h 20m" | 1초 |

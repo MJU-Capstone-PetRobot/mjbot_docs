@@ -28,7 +28,7 @@ ros2 run mjbot_voice mjbot_voice.py
 | /touch        | sub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : touch <br></br> 0 : no touch | event | 터치 상태 |
 | /co_ppm       | sub     | std_msgs/msg/Int32           | data = 20 ~ 2000 | 1 | CO 농도(ppm) |
 | /owner_fall   | sub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : fall <br></br> 0 : usual| 낙상 의심 발생 시 | 낙상 의심 여부 |
-| /emo          | pub     | std_msgs/msg/String          | data = "NULL" ~ "mic_waiting" <br></br> "NULL" : NULL <br></br> "close" : close <br></br> "moving" : 이동 <br></br> "wink" : 윙크 <br></br> "angry" :  분노 <br></br> "sad" : 슬픔 <br></br> "daily" : 평소 <br><br> "mic_wating" : 음성 기다림|
+| /emo          | pub     | std_msgs/msg/String          | data = "NULL" ~ "mic_waiting" <br></br> "NULL" : NULL <br></br> "close" : close <br></br> "moving" : 이동 <br></br> "wink" : 윙크 <br></br> "angry" :  분노 <br></br> "sad" : 슬픔 <br></br> "daily" : 평소 <br><br> "mic_wating" : 음성 기다림| 미정 | 	감정 상태|
 | /neck_rpy     | pub     | geometry_msgs/msg/Vector3              | x = -5 ~ 5 <br></br> y = -5 ~ 5 <br></br> z = -5 ~ 5 | 미정 | 목 플랫폼 r,p,y  회전 각도 |
 | /neck_z       | pub     | std_msgs/msg/UInt16                    | data = 60 ~ 100 | 미정 | 목 플랫폼 z 위아래(직선) 움직임 |
 | /arm_mode        | pub     | std_msgs/msg/String                     | data = "walk," "give_right_hand," "hug," or custom modes  | Variable| Receives commands for different arm modes.             |

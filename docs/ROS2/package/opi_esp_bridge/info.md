@@ -1,35 +1,37 @@
 # Info
 
-## node : opi_esp_comm
+## Description
 
-### description
+1. package : opi_esp
+2. node : opi_esp_comm
+3. ros2 run command : `ros2 run opi_esp opi_esp_comm`
 
-1. 명령 수신 : 감정 상태, 목 제어
+## Features
 
-2. 상태 전송 : 터치, 거리, 배터리, CO농도
+ - Orange Pi와 ESP_M 간의 통신 노드
+   1. Subscribe 3 ros2 topics and Transmit command to ESP_M
+      1. 3개 토픽 : `표정`, `목 rpy`, `목 z`
+   2. Receive data from ESP_M and Pulish ros2 topics
+      1. 5개 데이터 : `초음파 센서 2개 측정 거리`, `배터리 잔량`, `배터리 지속 시간`, `터치 여부`, `CO농도`
 
-### command
-```
-ros2 run opi_esp opi_esp_comm
-```
+## Topic list
 
-### topic list
+### Publish
 
-- /bat, /touch, /co_ppm, /distance
-    - esp32->orange pi 패킷 수신 이후 바로 pub 됨
-- /bat, /co_ppm
-    - hz는 esp32에서 결정됨
-- /touch
-    - 터치 상태 변화 시에만 pub 됨
-- /emo
-    - 감정 상태 추가 시에 표정 디자인, esp32 fw, opi_esp_comm node 연동 필요
+| name          | msg type              | msg structure                                                                                                                                                                                                                | hz    | description              |
+| ------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------ |
+| /ultrasonic_1 | sensor_msgs/msg/Range | msg.radiation_type = 0 (ULTRASOUND) <br></br> msg.field_of_view = 1.0472 (radian, 60 degree = 1.0472 radian) <br></br> msg.min_range = 0.030 (m) <br></br> msg.max_range = 4.500 (m) <br></br> msg.range = 0.030 ~ 4.500 (m) | 10    | 초음파 센서 측정 거리(m) |
+| /ultrasonic_2 | sensor_msgs/msg/Range | msg.radiation_type = 0 (ULTRASOUND) <br></br> msg.field_of_view = 1.0472 (radian, 60 degree = 1.0472 radian) <br></br> msg.min_range = 0.030 (m) <br></br> msg.max_range = 4.500 (m) <br></br> msg.range = 0.030 ~ 4.500 (m) | 10    | 초음파 센서 측정 거리(m) |
+| /bat_percent  | std_msgs/msg/String   | msg.data = "0%" ~ "100%"                                                                                                                                                                                                     | 1     | 배터리 잔량              |
+| /bat_time     | std_msgs/msg/String   | msg.data = "0h 0m" ~ "3h 0m" (최대치 미정)                                                                                                                                                                                   | 1     | 배터리 지속 시간         |
+| /touch        | std_msgs/msg/Bool     | msg.data = 0 (no touch) ~ 1 (touch)                                                                                                                                                                                          | event | 터치 상태                |
+| /co_ppm       | std_msgs/msg/Int32    | msg.data = 0 ~ 10000                                                                                                                                                                                                         | 1     | CO 농도(ppm)             |
 
-| name          | pub/sub | msg type                               | msg structure             | hz | description |
-|---------------|---------|----------------------------------------|---------------------------|----|---|
-| /bat          | pub     | std_msgs/msg/String          | data = "90%, 1h 20m"      | 1 | 배터리 잔량, 남은 시간 |
-| /touch        | pub     | std_msgs/msg/Bool            | data = 0 or 1 <br></br> 1 : touch <br></br> 0 : no touch | event | 터치 상태 |
-| /co_ppm       | pub     | std_msgs/msg/Int32           | data = 20 ~ 2000 | 1 | CO 농도(ppm) |
-| /distance     | pub     | std_msgs/msg/Int32           | data = 30 ~ 4500 | 10 | 초음파 센서 측정 거리(mm) | 
-| /emo          | sub     | std_msgs/msg/String          | data = "0" ~ "6" <br></br> "0" : NULL <br></br> "1" : close <br></br> "2" : moving <br></br> "3" : wink <br></br> "4" : angry <br></br> "5" : sad <br></br> "6" : daily | 미정 | 감정 상태 |
-| /neck_rpy     | sub     | geometry_msgs/msg/Vector3              | x = -5 ~ 5 <br></br> y = -5 ~ 5 <br></br> z = -5 ~ 5 | 미정 | 목 플랫폼 r,p,y  회전 각도 |
-| /neck_z       | sub     | std_msgs/msg/UInt16                    | data = 60 ~ 100 | 미정 | 목 플랫폼 z 위아래(직선) 움직임 |
+
+### Subscribe
+
+| name      | msg type                  | msg structure                                                                                                                                                                                                                                                            | hz    | description                     |
+| --------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- | ------------------------------- |
+| /emo      | std_msgs/msg/String       | msg.data = "daily" ~ "mic_waiting" <br></br> daily (평범) <br></br> wink (기쁨) <br></br> sad (슬픔) <br></br> angry (분노) <br></br> moving (당황) <br></br> blink (눈 깜빡) <br></br> low_bat (배터리 부족) <br></br> danger (위험) <br></br> mic_wating (음성 기다림) | Event | 표정                            |
+| /neck_rpy | geometry_msgs/msg/Vector3 | msg.x = -5 ~ 5 <br></br> msg.y = -5 ~ 5 <br></br> msg.z = -5 ~ 5                                                                                                                                                                                                                     | Event | 목 플랫폼 r,p,y  회전 각도      |
+| /neck_z   | std_msgs/msg/UInt16       | msg.data = 60 ~ 100                                                                                                                                                                                                                                                          | Event | 목 플랫폼 z 위아래(직선) 움직임 |

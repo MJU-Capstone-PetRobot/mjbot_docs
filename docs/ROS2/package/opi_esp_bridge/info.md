@@ -12,7 +12,7 @@
    1. Subscribe 3 ros2 topics and Transmit command to ESP_M
       1. 3개 토픽 : `표정`, `목 rpy`, `목 z`
    2. Receive data from ESP_M and Pulish ros2 topics
-      1. 5개 데이터 : `초음파 센서 2개 측정 거리`, `배터리 잔량`, `배터리 지속 시간`, `터치 여부`, `CO농도`
+      1. 6개 데이터 : `초음파 센서 2개 측정 거리`, `배터리 잔량`, `배터리 지속 시간`, `터치 여부`, `CO농도`. `GPS`
 
 ## Topic list
 
@@ -22,10 +22,11 @@
 | ------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------ |
 | /ultrasonic_1 | sensor_msgs/msg/Range | msg.radiation_type = 0 (ULTRASOUND) <br></br> msg.field_of_view = 1.0472 (radian, 60 degree = 1.0472 radian) <br></br> msg.min_range = 0.030 (m) <br></br> msg.max_range = 4.500 (m) <br></br> msg.range = 0.030 ~ 4.500 (m) | 10    | 초음파 센서 측정 거리(m) |
 | /ultrasonic_2 | sensor_msgs/msg/Range | msg.radiation_type = 0 (ULTRASOUND) <br></br> msg.field_of_view = 1.0472 (radian, 60 degree = 1.0472 radian) <br></br> msg.min_range = 0.030 (m) <br></br> msg.max_range = 4.500 (m) <br></br> msg.range = 0.030 ~ 4.500 (m) | 10    | 초음파 센서 측정 거리(m) |
-| /bat_percent  | std_msgs/msg/String   | msg.data = "0%" ~ "100%"                                                                                                                                                                                                     | 1     | 배터리 잔량              |
-| /bat_time     | std_msgs/msg/String   | msg.data = "0h 0m" ~ "3h 0m" (최대치 미정)                                                                                                                                                                                   | 1     | 배터리 지속 시간         |
+| /bat_percent  | std_msgs/msg/String   | msg.data = "0%" ~ "100%"                                                                                                                                                                                                     | 0.3   | 배터리 잔량              |
+| /bat_time     | std_msgs/msg/String   | msg.data = "0h 0m" ~ "99h 99m"                                                                                                                                                                                    | 0.3   | 배터리 지속 시간         |
 | /touch        | std_msgs/msg/Bool     | msg.data = 0 (no touch) ~ 1 (touch)                                                                                                                                                                                          | event | 터치 상태                |
-| /co_ppm       | std_msgs/msg/Int32    | msg.data = 0 ~ 10000                                                                                                                                                                                                         | 1     | CO 농도(ppm)             |
+| /co_ppm       | std_msgs/msg/Int32    | msg.data = 0 ~ 10000                                                                                                                                                                                                         | 0.3   | CO 농도(ppm)             |
+| /gps          | std_msgs/msg/String   | msg.data = "37.663998, 127.978462"                                                                                                                                                                                           | 0.2   | Latitude, Longitude      |
 
 
 ### Subscribe

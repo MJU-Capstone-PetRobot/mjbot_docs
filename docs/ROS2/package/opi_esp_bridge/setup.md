@@ -1,5 +1,33 @@
 # Setup
 
+## Rename dev/ttyUSB* to dev/esp
+
+1. Vendor, Product ID 확인
+    - ```lsusb```   
+        <img src="./lsusb.png"></img>
+    - Vendor : 1a86
+    - Product ID : 7522
+    - *esp dev board 변경 시 Product ID 재확인 필요*
+
+2. rule 파일 생성
+   1. cd /etc/udev/rules.d
+   2. sudo gedit 99-usb-serial.rules
+
+3. rule 파일 작성
+    - ```SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7522", SYMLINK+="esp"```
+        <img src="./rule%20file.png"></img>
+
+4. 장치 제거
+
+5. 적용
+   - ```sudo udevadm control --reload-rules```
+   - ```sudo service udev reload```
+   - ```sudo service udev restart```
+
+6. 확인
+   - ```sudo ls -l /dev/esp```  
+        <img src="./verify%20rename.png"></img>
+
 
 ## Bugfix
 

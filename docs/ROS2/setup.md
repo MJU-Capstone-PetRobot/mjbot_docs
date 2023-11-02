@@ -36,43 +36,20 @@ cd /home/drcl/Desktop/mjbot_2023/
 ros2 run opi_esp opi_esp_comm
 ```
 
-2. ros2_myoungja.service 작성 (**유저 네임 유의**)
-```
-sudo gedit /etc/systemd/system/ros2_myoungja.service
-```
-```
-# /etc/systemd/system/ros2_myoungja.service
-[Unit]
-Description=Ros2 MyoungJa Service
+2. Startup Applications 등록
 
-[Service]
-User = drcl
-Type=simple
-ExecStart=/home/drcl/Desktop/mjbot_2023/startup_myoungja.sh
+- Startup Applications 실행  
+    ![img](./startup_applications.png)   
 
-[Install]
-WantedBy=multi-user.target
-```
+- MyoungJa 추가  
+    ![img](./add_applications.png)  
+  
+    command
+    ```
+    gnome-terminal -- /bin/bash -c "/home/drcl/Desktop/mjbot_2023/startup_myoungja.sh"
+    ```
 
-
-5. ros2_myoungja.service 등록
-```
-sudo systemctl daemon-reload
-sudo systemctl enable ros2_myoungja.service	# 부팅시 이 서비스를 자동시작 함
-sudo systemctl start ros2_myoungja.service	# 서비스 시작
-```
-
-6. 재부팅
+3. 재부팅
 ```
 sudo reboot
 ```
-
-7. ros2_myoungja.service 실행 확인
-```
-systemctl list-units --type=service
-```
-```
-systemctl status ros2_myoungja.service
-```
-
-![img](./ros2_myoungja_service_active.png)

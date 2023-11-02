@@ -1,4 +1,4 @@
-# ROS2 Setup Guide
+# Setup
 
 ## Install ROS2
 
@@ -14,3 +14,77 @@
 ```
 ros2 run [package name] [node name]
 ```
+
+## 부팅 후 MyoungJa Service 자동 실행
+
+1. startup_myoungja.sh 작성 (**유저 네임 유의**)
+```
+cd /home/drcl/Desktop/mjbot_2023/
+```
+
+```
+gedit startup_myoungja.sh
+```
+
+```
+#! /bin/bash
+source /opt/ros/humble/setup.bash
+
+cd /home/drcl/Desktop/mjbot_2023/
+colcon build
+
+source /home/drcl/Desktop/mjbot_2023/install/setup.bash
+
+sleep 2
+
+cd /home/drcl/Desktop/mjbot_2023/
+ros2 run opi_esp opi_esp_comm
+```
+
+2. 디렉토리 이동
+```
+cd /etc/systemd/system/
+```
+
+3. ros2_myoungja.service 파일 생성
+```
+sudo gedit ros2_myoungja.service
+```
+
+4. ros2_myoungja.service 작성 (**유저 네임 유의**)
+```
+# /etc/systemd/system/ros2_myoungja.service
+[Unit]
+Description=Ros2 MyoungJa Service
+
+[Service]
+User = drcl
+Type=simple
+ExecStart=/home/drcl/Desktop/mjbot_2023/startup_myoungja.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
+5. ros2_myoungja.service 등록
+```
+systemctl daemon-reload
+systemctl enable ros2_myoungja.service	# 부팅시 이 서비스를 자동시작 함
+systemctl start ros2_myoungja.service	# 서비스 시작
+```
+
+6. 재부팅
+```
+sudo reboot
+```
+
+7. ros2_myoungja.service 실행 확인
+```
+systemctl list-units --type=service
+```
+```
+systemctl status ros2_myoungja.service
+```
+
+![img](./ros2_myoungja_service_active.png)

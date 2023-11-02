@@ -19,13 +19,8 @@ ros2 run [package name] [node name]
 
 1. startup_myoungja.sh 작성 (**유저 네임 유의**)
 ```
-cd /home/drcl/Desktop/mjbot_2023/
+gedit /home/drcl/Desktop/mjbot_2023/startup_myoungja.sh
 ```
-
-```
-gedit startup_myoungja.sh
-```
-
 ```
 #! /bin/bash
 source /opt/ros/humble/setup.bash
@@ -41,17 +36,10 @@ cd /home/drcl/Desktop/mjbot_2023/
 ros2 run opi_esp opi_esp_comm
 ```
 
-2. 디렉토리 이동
+2. ros2_myoungja.service 작성 (**유저 네임 유의**)
 ```
-cd /etc/systemd/system/
+sudo gedit /etc/systemd/system/ros2_myoungja.service
 ```
-
-3. ros2_myoungja.service 파일 생성
-```
-sudo gedit ros2_myoungja.service
-```
-
-4. ros2_myoungja.service 작성 (**유저 네임 유의**)
 ```
 # /etc/systemd/system/ros2_myoungja.service
 [Unit]
@@ -69,9 +57,9 @@ WantedBy=multi-user.target
 
 5. ros2_myoungja.service 등록
 ```
-systemctl daemon-reload
-systemctl enable ros2_myoungja.service	# 부팅시 이 서비스를 자동시작 함
-systemctl start ros2_myoungja.service	# 서비스 시작
+sudo systemctl daemon-reload
+sudo systemctl enable ros2_myoungja.service	# 부팅시 이 서비스를 자동시작 함
+sudo systemctl start ros2_myoungja.service	# 서비스 시작
 ```
 
 6. 재부팅

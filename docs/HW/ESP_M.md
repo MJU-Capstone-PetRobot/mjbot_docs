@@ -9,6 +9,8 @@
 
 ## Pin Map
 
+-  목 서보모터 DirectionPin IO10 사용중, 왼쪽 눈 SPI CS IO16으로 변경
+
 |           |     | Dev Board |     |     |      |             |                |
 | --------- | --- | --------- | --- | --- | ---- | ----------- | -------------- |
 |           |     | 3.3V      |     |     | GND  |             |                |
@@ -19,14 +21,14 @@
 | 터치 센서 | ADC | IO6       |     |     | IO42 |             |                |
 | 터치 센서 | ADC | IO7       |     |     | IO41 |             |                |
 | 터치 센서 | ADC | IO15      |     |     | IO40 | UART3 TX    | ESP_S TX       |
-|           |     | IO16      |     |     | IO39 | UART3 RX    | ESP_S RX       |
+| L 눈      | CS  | IO16      |     |     | IO39 | UART3 RX    | ESP_S RX       |
 | 가스 센서 | ADC | IO17      |     |     | IO38 |             |                |
 |           |     | IO18      |     |     | IO37 | PSRAM       |                |
 |           |     | IO8       |     |     | IO36 | PSRAM       |                |
 |           |     | IO3       |     |     | IO35 | PSRAM       |                |
 |           |     | IO46      |     |     | IO0  |             |                |
 |           |     | IO9       |     |     | IO45 |             |                |
-| L 눈      | CS  | IO10      |     |     | IO48 | 컬러LED     |                |
+| ~~L 눈~~      | ~~CS~~  | IO10      |     |     | IO48 | 컬러LED     |                |
 | 눈        | RST | IO11      |     |     | IO47 |             |                |
 | R 눈      | CS  | IO12      |     |     | IO21 | DC          | 눈             |
 | 눈        | DIN | IO13      |     |     | IO20 |             |                |

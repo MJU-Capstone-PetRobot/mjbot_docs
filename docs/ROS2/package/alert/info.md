@@ -17,6 +17,7 @@ ros2 run mjbot_alert mjbot_alert.py
 
 - /co_ppm
 - /owner_fall
+- /danger
 
 | name          | pub/sub | msg type                               | msg structure             | hz | description |
 |---------------|---------|----------------------------------------|---------------------------|----|---|

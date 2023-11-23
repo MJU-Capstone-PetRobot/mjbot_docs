@@ -21,7 +21,7 @@
     - `sudo apt-get install -y python3-numpy`
 3. Install RKNN Toolkit Lite2
     - `cd ./rknn-toolkit2/rknn_toolkit_lite2/packages`
-    - `pip3 install rknn_toolkit_lite2-1.5.0-cp310-cp310-linux_aarch64.whl`
+    - `pip3 install rknn_toolkit_lite2-1.5.2-cp310-cp310-linux_aarch64.whl`
 
 ### Run Demo
 
